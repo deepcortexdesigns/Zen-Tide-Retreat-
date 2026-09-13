@@ -246,6 +246,35 @@ details.faq-item p{ margin-top:10px; font-size:14.5px; color:var(--ink-soft); ma
 .carousel-dot{ width:9px; height:9px; border-radius:50%; background:var(--border); border:none; cursor:pointer; padding:0; transition:background .18s, transform .18s; }
 .carousel-dot:hover{ background:var(--driftwood); }
 .carousel-dot.active{ background:var(--tide); transform:scale(1.25); }
+.carousel-expand{ position:absolute; top:16px; left:16px; width:38px; height:38px; border-radius:50%; background:rgba(9,28,27,0.55); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--foam); transition:background .18s, transform .18s; z-index:3; padding:0; }
+.carousel-expand:hover{ background:rgba(9,28,27,0.78); transform:scale(1.06); }
+.carousel-expand svg{ width:17px; height:17px; }
+@media (max-width:640px){
+  .carousel-expand{ width:33px; height:33px; }
+}
+
+/* ---- lightbox (enlarged photo viewer) ---- */
+.lightbox-overlay{ position:fixed; inset:0; background:rgba(6,17,16,0.94); z-index:9999; display:flex; align-items:center; justify-content:center; padding:56px 24px; opacity:0; visibility:hidden; transition:opacity .22s ease; }
+.lightbox-overlay.open{ opacity:1; visibility:visible; }
+.lightbox-figure{ margin:0; max-width:min(94vw, 1200px); max-height:100%; display:flex; flex-direction:column; align-items:center; }
+.lightbox-img{ max-width:100%; max-height:76vh; width:auto; height:auto; object-fit:contain; border-radius:10px; box-shadow:0 24px 60px rgba(0,0,0,0.5); }
+.lightbox-caption{ margin-top:16px; color:var(--foam); font-family:"Karla",sans-serif; font-weight:700; font-size:16px; letter-spacing:.02em; text-align:center; }
+.lightbox-counter{ position:absolute; top:22px; left:50%; transform:translateX(-50%); color:var(--foam); opacity:.7; font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.08em; }
+.lightbox-close{ position:absolute; top:18px; right:18px; width:42px; height:42px; border-radius:50%; background:rgba(251,252,250,0.12); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--foam); transition:background .18s; z-index:2; }
+.lightbox-close:hover{ background:rgba(251,252,250,0.22); }
+.lightbox-close svg{ width:19px; height:19px; }
+.lightbox-btn{ position:absolute; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; background:rgba(251,252,250,0.12); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--foam); transition:background .18s, transform .18s; }
+.lightbox-btn:hover{ background:rgba(251,252,250,0.22); transform:translateY(-50%) scale(1.05); }
+.lightbox-btn svg{ width:22px; height:22px; }
+.lightbox-btn.prev{ left:14px; }
+.lightbox-btn.next{ right:14px; }
+@media (max-width:640px){
+  .lightbox-overlay{ padding:40px 12px; }
+  .lightbox-btn{ width:40px; height:40px; }
+  .lightbox-close{ width:38px; height:38px; }
+  .lightbox-caption{ font-size:14px; }
+}
+
 
 </style>
 </head>
@@ -284,14 +313,14 @@ details.faq-item p{ margin-top:10px; font-size:14.5px; color:var(--ink-soft); ma
       <div class="carousel-wrap" style="max-width:700px; margin-left:auto; margin-right:auto;">
         <div class="carousel" id="cottageCarousel" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Cottage photo gallery">
           <div class="carousel-track">
-            <div class="carousel-slide"><img src="cottage-gallery-1.jpg" alt="Bunk Room — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Bunk Room</div></div><div class="carousel-slide"><img src="cottage-gallery-2.jpg" alt="Queen Bedroom — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Queen Bedroom</div></div><div class="carousel-slide"><img src="cottage-gallery-3.jpg" alt="Second Queen Bedroom — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Second Queen Bedroom</div></div><div class="carousel-slide"><img src="cottage-gallery-4.jpg" alt="Bathroom — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Bathroom</div></div><div class="carousel-slide"><img src="cottage-gallery-5.jpg" alt="Evenings by the Fire Pit — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Evenings by the Fire Pit</div></div><div class="carousel-slide"><img src="cottage-gallery-6.jpg" alt="Your Golf Cart — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Your Golf Cart</div></div><div class="carousel-slide"><img src="cottage-gallery-7.jpg" alt="Covered Deck & Lounge — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Covered Deck & Lounge</div></div><div class="carousel-slide"><img src="cottage-gallery-8.jpg" alt="Living Room & Kitchen — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Living Room & Kitchen</div></div><div class="carousel-slide"><img src="cottage-gallery-9.jpg" alt="Open-Concept Living — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Open-Concept Living</div></div><div class="carousel-slide"><img src="cottage-gallery-10.jpg" alt="Backyard Fire Pit — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Backyard Fire Pit</div></div>
+            <div class="carousel-slide"><img src="cottage-gallery-11.jpg" alt="The Great Room — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">The Great Room</div></div><div class="carousel-slide"><img src="cottage-gallery-1.jpg" alt="Bunk Room — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Bunk Room</div></div><div class="carousel-slide"><img src="cottage-gallery-2.jpg" alt="Queen Bedroom — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Queen Bedroom</div></div><div class="carousel-slide"><img src="cottage-gallery-3.jpg" alt="Second Queen Bedroom — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Second Queen Bedroom</div></div><div class="carousel-slide"><img src="cottage-gallery-4.jpg" alt="Bathroom — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Bathroom</div></div><div class="carousel-slide"><img src="cottage-gallery-5.jpg" alt="Evenings by the Fire Pit — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Evenings by the Fire Pit</div></div><div class="carousel-slide"><img src="cottage-gallery-6.jpg" alt="Your Golf Cart — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Your Golf Cart</div></div><div class="carousel-slide"><img src="cottage-gallery-7.jpg" alt="Covered Deck & Lounge — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Covered Deck & Lounge</div></div><div class="carousel-slide"><img src="cottage-gallery-8.jpg" alt="Living Room & Kitchen — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Living Room & Kitchen</div></div><div class="carousel-slide"><img src="cottage-gallery-9.jpg" alt="Open-Concept Living — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Open-Concept Living</div></div><div class="carousel-slide"><img src="cottage-gallery-10.jpg" alt="Backyard Fire Pit — Zen Tide Retreat cottage" draggable="false"><div class="carousel-caption">Backyard Fire Pit</div></div>
           </div>
-          <div class="carousel-counter"><span data-role="counter">1 / 10</span></div>
+          <div class="carousel-counter"><span data-role="counter">1 / 11</span></div><button class="carousel-expand" type="button" aria-label="Enlarge photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
           <button class="carousel-btn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
           <button class="carousel-btn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
         </div>
         <div class="carousel-dots">
-          <button class="carousel-dot active" data-index="0" aria-label="Go to photo 1"></button><button class="carousel-dot" data-index="1" aria-label="Go to photo 2"></button><button class="carousel-dot" data-index="2" aria-label="Go to photo 3"></button><button class="carousel-dot" data-index="3" aria-label="Go to photo 4"></button><button class="carousel-dot" data-index="4" aria-label="Go to photo 5"></button><button class="carousel-dot" data-index="5" aria-label="Go to photo 6"></button><button class="carousel-dot" data-index="6" aria-label="Go to photo 7"></button><button class="carousel-dot" data-index="7" aria-label="Go to photo 8"></button><button class="carousel-dot" data-index="8" aria-label="Go to photo 9"></button><button class="carousel-dot" data-index="9" aria-label="Go to photo 10"></button>
+          <button class="carousel-dot active" data-index="0" aria-label="Go to photo 1"></button><button class="carousel-dot" data-index="1" aria-label="Go to photo 2"></button><button class="carousel-dot" data-index="2" aria-label="Go to photo 3"></button><button class="carousel-dot" data-index="3" aria-label="Go to photo 4"></button><button class="carousel-dot" data-index="4" aria-label="Go to photo 5"></button><button class="carousel-dot" data-index="5" aria-label="Go to photo 6"></button><button class="carousel-dot" data-index="6" aria-label="Go to photo 7"></button><button class="carousel-dot" data-index="7" aria-label="Go to photo 8"></button><button class="carousel-dot" data-index="8" aria-label="Go to photo 9"></button><button class="carousel-dot" data-index="9" aria-label="Go to photo 10"></button><button class="carousel-dot" data-index="10" aria-label="Go to photo 11"></button>
         </div>
       </div>
     </div>
@@ -396,6 +425,8 @@ details.faq-item p{ margin-top:10px; font-size:14.5px; color:var(--ink-soft); ma
     var counterEl = root.querySelector('[data-role="counter"]');
     var prevBtn = root.querySelector('.carousel-btn.prev');
     var nextBtn = root.querySelector('.carousel-btn.next');
+    var expandBtn = root.querySelector('.carousel-expand');
+    var lightbox = null, lbImg, lbCaption, lbCounter;
     var index = 0;
     var AUTOPLAY_MS = 5500;
     var timer = null;
@@ -405,6 +436,59 @@ details.faq-item p{ margin-top:10px; font-size:14.5px; color:var(--ink-soft); ma
       dots.forEach(function(d, i){ d.classList.toggle('active', i === index); });
       if (counterEl) counterEl.textContent = (index + 1) + ' / ' + count;
     }
+    function buildLightbox(){
+      var overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Enlarged photo viewer');
+      overlay.innerHTML =
+        '<div class="lightbox-counter" data-role="lb-counter"></div>' +
+        '<button class="lightbox-close" type="button" aria-label="Close enlarged photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
+        '<button class="lightbox-btn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' +
+        '<button class="lightbox-btn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>' +
+        '<figure class="lightbox-figure"><img class="lightbox-img" src="" alt=""><figcaption class="lightbox-caption" data-role="lb-caption"></figcaption></figure>';
+      document.body.appendChild(overlay);
+      lbImg = overlay.querySelector('.lightbox-img');
+      lbCaption = overlay.querySelector('[data-role="lb-caption"]');
+      lbCounter = overlay.querySelector('[data-role="lb-counter"]');
+      overlay.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+      overlay.querySelector('.lightbox-btn.prev').addEventListener('click', function(){ prev(); updateLightbox(); });
+      overlay.querySelector('.lightbox-btn.next').addEventListener('click', function(){ next(); updateLightbox(); });
+      overlay.addEventListener('click', function(e){ if (e.target === overlay) closeLightbox(); });
+      return overlay;
+    }
+    function updateLightbox(){
+      if (!lightbox) return;
+      var slide = slides[index];
+      var img = slide.querySelector('img');
+      var caption = slide.querySelector('.carousel-caption');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCaption.textContent = caption ? caption.textContent : '';
+      lbCounter.textContent = (index + 1) + ' / ' + count;
+    }
+    function openLightbox(){
+      if (!lightbox) lightbox = buildLightbox();
+      updateLightbox();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      stopAutoplay();
+    }
+    function closeLightbox(){
+      if (!lightbox) return;
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      startAutoplay();
+    }
+    if (expandBtn) expandBtn.addEventListener('click', openLightbox);
+    document.addEventListener('keydown', function(e){
+      if (!lightbox || !lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') { next(); updateLightbox(); }
+      if (e.key === 'ArrowLeft') { prev(); updateLightbox(); }
+    });
+
     function goTo(i){
       index = ((i % count) + count) % count;
       render();
