@@ -156,6 +156,7 @@ button, input, select, textarea{ font-family:inherit; }
 .photo-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
 .photo-grid img{ width:100%; height:230px; object-fit:cover; border-radius:10px; }
 .photo-grid img.short{ height:150px; }
+.photo-grid img.tile{ height:auto; aspect-ratio:3/2; object-position:center; box-shadow:0 1px 3px rgba(23,34,31,0.08); }
 .photo-placeholder{ border:1.5px dashed var(--border); border-radius:10px; background:var(--foam); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; height:230px; text-align:center; padding:14px; }
 .photo-placeholder.short{ height:150px; }
 .photo-placeholder svg{ width:24px; height:24px; color:var(--driftwood); }
@@ -292,8 +293,8 @@ details.faq-item p{ margin-top:10px; font-size:14.5px; color:var(--ink-soft); ma
     <div class="grid-2" style="align-items:center; margin-top:0;">
       <div class="photo-grid" style="grid-template-columns:1fr 1fr;">
         <img src="hero-shoreline.jpg" alt="Shoreline view near Zen Tide Retreat at Sherkston Shores" style="object-position:35% 60%; grid-column:1/-1; height:280px;">
-        <div class="photo-placeholder short"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class=""><path d="M4 8a1 1 0 0 1 1-1h2l1.2-1.8A1 1 0 0 1 9 5h6a1 1 0 0 1 .8.4L17 7h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8z"/><circle cx="12" cy="13" r="3.2"/></svg><span>Deck &amp; firepit</span></div>
-        <div class="photo-placeholder short"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class=""><path d="M4 8a1 1 0 0 1 1-1h2l1.2-1.8A1 1 0 0 1 9 5h6a1 1 0 0 1 .8.4L17 7h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8z"/><circle cx="12" cy="13" r="3.2"/></svg><span>Living room</span></div>
+        <img class="tile" src="home-deck-firepit.jpg" alt="Private fire pit with Adirondack chairs beside the deck at Zen Tide Retreat" width="1200" height="800" loading="lazy">
+        <img class="tile" src="home-living-room.jpg" alt="Bright open-concept living room with beamed ceiling at Zen Tide Retreat" width="1200" height="800" loading="lazy">
       </div>
       <div>
         <div class="kicker">The Cottage</div>
